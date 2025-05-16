@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FCEX – 자유 속 연결형</title>
+<style>
+    body { font-family: 'Noto Sans KR', sans-serif; max-width: 720px; margin: 2rem auto; padding: 1.5rem; }
+    h2 { margin-top: 1rem; }
+    h3 { margin: 1.2rem 0 0.4rem; }
+    label { display: block; margin: 0.5rem 0 0.2rem; }
+    input, select { width: 100%; padding: 0.5rem; margin-bottom: 1rem; }
+    button { padding: 0.7rem 1.5rem; font-size: 1rem; background: black; color: white; border: none; border-radius: 4px; }
+    .notice { color: green; font-weight: bold; display: none; margin-top: 1rem; }
+    .error { color: red; display: none; }
+    pre { white-space: pre-wrap; font-family: inherit; line-height: 1.6; }
+  </style>
+</head>
+<body>
+<h2>FCEX – 자유 속 연결형</h2>
+<p><em>나를 있는 그대로 존중해주는 연대가 좋아요</em></p>
+<h3>💍 내가 원하는 결혼생활은?</h3>
+<pre>자유로운 환경 속에서도 연결감을 느끼는 결혼을 원해요.
+취향과 생각이 다르더라도 서로를 존중하며 함께하는 삶이 좋아요.
+각자의 삶을 독립적으로 꾸리되, 함께할 땐 즐겁게 연결되는 관계가 이상적이에요.</pre>
+<h3>💞 내가 원하는 배우자는?</h3>
+<pre>자기 삶이 분명한 사람.
+취향과 선택을 존중하면서도 함께할 땐 유쾌한 에너지를 주는 사람이 좋아요.</pre>
+<h3>🔗 나와 어울리는 유형 코드</h3>
+<p>FCEA – 유연한 동반자형, TIIX – 조용한 독립형</p>
+<form id="infoForm">
+<h3>📝 참여자는 반드시 적어주세요</h3>
+<label>이름</label>
+<input name="name" required="" type="text"/>
+<label>핸드폰 번호</label>
+<input name="phone" required="" type="text"/>
+<label>성별</label>
+<select name="gender" required="">
+<option value="">-- 선택 --</option>
+<option value="남자">남자</option>
+<option value="여자">여자</option>
+</select>
+<label>출생년도 (예: 90)</label>
+<input name="birth" required="" type="text"/>
+<input name="result" type="hidden" value="FCEX"/>
+<input name="result_kor" type="hidden" value="자유 속 연결형"/>
+<input name="어울리는 코드" type="hidden" value="FCEA – 유연한 동반자형, TIIX – 조용한 독립형"/>
+<button type="submit">결과 제출하기</button>
+</form>
+<p class="notice" id="successMsg">🎉 결과가 성공적으로 제출되었습니다.</p>
+<p class="error" id="errorMsg">⚠️ 빈칸을 모두 채워주세요.</p>
+<script>const form = document.getElementById("infoForm");
+const success = document.getElementById("successMsg");
+const error = document.getElementById("errorMsg");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  if (
+    !form.name.value ||
+    !form.phone.value ||
+    !form.gender.value ||
+    !form.birth.value
+  ) {
+    error.style.display = "block";
+    success.style.display = "none";
+    return;
+  }
+
+  error.style.display = "none";
+
+  const iframe = document.createElement("iframe");
+  iframe.style.display = "none";
+  iframe.name = "hidden_iframe";
+  document.body.appendChild(iframe);
+
+  form.target = "hidden_iframe";
+  form.action = "https://script.google.com/macros/s/AKfycbzf7F6xNmrLJ7eJv3wlANrqEt9_iDKTMWl9YYYWnNcYWWMXpqEOvkd_CR99ucHHdGfonA/exec";
+  form.method = "POST";
+  form.submit();
+
+  success.style.display = "block";
+  form.reset();
+});</script>
+<div style="margin-top: 2rem;">
+<button onclick="location.href='index.html'" style="background:#000; color:#fff; padding:0.6rem 1.2rem; border:none; border-radius:6px; font-size:1rem; cursor:pointer;">처음으로</button>
+<button onclick="location.href='https://smartstore.naver.com/gokishop/products/11168052746'" style="background:#000; color:#fff; padding:0.6rem 1.2rem; border:none; border-radius:6px; font-size:1rem; cursor:pointer;">사이트 가기</button>
+</div>
+</body>
+</html>
